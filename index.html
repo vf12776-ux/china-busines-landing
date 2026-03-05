@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0056b3">
     <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Бизнес Китай">
-<link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Бизнес Китай">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <title>Бизнес с Китаем в Каспийске</title>
     <!-- Подключение шрифтов Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-<!-- Font Awesome 6 (бесплатный) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Сюда потом подключим CSS -->
- <link rel="stylesheet" href="styles.css">
- <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (бесплатный) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Манифест PWA -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -48,10 +48,10 @@
                 <h1 class="hero__title">Научим зарабатывать на бизнесе с Китаем с нуля: от поиска товара до первой прибыли</h1>
                 <p class="hero__subtitle">[Краткое подзаголовок/УТП — напишем позже]</p>
                 <a href="#contact" class="btn btn--large btn--primary">Получить программу курса</a>
-                <!-- Здесь можно будет добавить изображение -->
-                 <button id="pwa-install-btn" class="btn btn-primary">
-    📲 УСТАНОВИТЬ ПРИЛОЖЕНИЕ
-</button>
+                <!-- Кнопка установки PWA (скрыта по умолчанию) -->
+                <button id="pwa-install-btn" class="btn btn-primary" style="display: none;">
+                    📲 УСТАНОВИТЬ ПРИЛОЖЕНИЕ
+                </button>
             </div>
         </section>
 
@@ -213,44 +213,46 @@
             </div>
         </div>
     </footer>
+
+    <!-- Регистрация Service Worker (относительный путь) -->
     <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    });
-  }
-</script>
-<script>
-    let deferredPrompt;
-    const installBtn = document.getElementById('pwa-install-btn');
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(reg => {
+                    console.log('SW registered:', reg.scope);
+                }, err => {
+                    console.log('SW registration failed:', err);
+                });
+            });
+        }
+    </script>
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        // Можно показать кнопку, если она скрыта, но у нас она видна
-        console.log('beforeinstallprompt fired');
-    });
+    <!-- Логика кнопки установки PWA -->
+    <script>
+        let deferredPrompt;
+        const installBtn = document.getElementById('pwa-install-btn');
 
-    installBtn.addEventListener('click', async () => {
-        if (deferredPrompt) {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'inline-block'; // показываем кнопку
+            console.log('beforeinstallprompt fired');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to the install prompt: ${outcome}`);
+            console.log('Install prompt outcome:', outcome);
             deferredPrompt = null;
-        } else {
-            alert('Нажмите меню браузера (три точки) → "Добавить на главный экран"');
-        }
-    });
+            installBtn.style.display = 'none'; // скрываем после установки
+        });
 
-    window.addEventListener('appinstalled', () => {
-        console.log('PWA was installed');
-        deferredPrompt = null;
-    });
-</script>
-
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed');
+            deferredPrompt = null;
+            installBtn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
