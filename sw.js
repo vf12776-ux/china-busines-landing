@@ -1,11 +1,11 @@
 const CACHE_NAME = 'china-business-v1';
 const urlsToCache = [
-  '.',
-  'index.html',
-  'styles.css',
-  'manifest.json',
-  'icons/icon-192.png',
-  'icons/icon-512.png'
+  '/china-busines-landing/',
+  '/china-busines-landing/index.html',
+  '/china-busines-landing/styles.css',
+  '/china-busines-landing/manifest.json',
+  '/china-busines-landing/icons/icon-192.png',
+  '/china-busines-landing/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {

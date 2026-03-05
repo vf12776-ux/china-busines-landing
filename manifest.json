@@ -2,19 +2,19 @@
   "name": "Бизнес с Китаем в Каспийске",
   "short_name": "Бизнес Китай",
   "description": "Обучающие курсы и консультации по бизнесу с Китаем",
-  "start_url": ".",
-  "scope": ".",
+  "start_url": "/china-busines-landing/",
+  "scope": "/china-busines-landing/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0056b3",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "/china-busines-landing/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "/china-busines-landing/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
