@@ -49,6 +49,9 @@
                 <p class="hero__subtitle">[Краткое подзаголовок/УТП — напишем позже]</p>
                 <a href="#contact" class="btn btn--large btn--primary">Получить программу курса</a>
                 <!-- Здесь можно будет добавить изображение -->
+                 <button id="pwa-install-btn" class="btn btn-primary">
+    📲 УСТАНОВИТЬ ПРИЛОЖЕНИЕ
+</button>
             </div>
         </section>
 
@@ -220,6 +223,33 @@
       });
     });
   }
+</script>
+<script>
+    let deferredPrompt;
+    const installBtn = document.getElementById('pwa-install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Можно показать кнопку, если она скрыта, но у нас она видна
+        console.log('beforeinstallprompt fired');
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            deferredPrompt = null;
+        } else {
+            alert('Нажмите меню браузера (три точки) → "Добавить на главный экран"');
+        }
+    });
+
+    window.addEventListener('appinstalled', () => {
+        console.log('PWA was installed');
+        deferredPrompt = null;
+    });
 </script>
 
 </body>

@@ -1,11 +1,12 @@
 const CACHE_NAME = 'china-business-v1';
 const urlsToCache = [
-  '/',
+  '/',                // корень приложения (scope)
   'index.html',
   'styles.css',
   'manifest.json',
-  'icons/icon-192x192.png',  // хотя бы одна иконка
-  // можно добавить шрифты, если они локальные (но Google Fonts кэшируются браузером)
+  'icons/icon-192.png',
+  'icons/icon-512.png'
+  // при необходимости добавьте другие важные файлы
 ];
 
 // Установка service worker и кэширование ресурсов
@@ -14,7 +15,11 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        // Используем cache.addAll, но не даём установке упасть из-за одной ошибки
+        return cache.addAll(urlsToCache).catch(error => {
+          console.error('Failed to cache some resources:', error);
+          // Продолжаем установку, даже если некоторые ресурсы не закэшированы
+        });
       })
   );
 });
