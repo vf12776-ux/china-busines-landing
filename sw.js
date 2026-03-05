@@ -1,10 +1,10 @@
 const CACHE_NAME = 'china-business-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/styles.css',
-  '/manifest.json',
-  '/icons/icon-192x192.png',  // хотя бы одна иконка
+  'index.html',
+  'styles.css',
+  'manifest.json',
+  'icons/icon-192x192.png',  // хотя бы одна иконка
   // можно добавить шрифты, если они локальные (но Google Fonts кэшируются браузером)
 ];
 
