@@ -1,12 +1,15 @@
-const CACHE_NAME = 'china-business-v1';
+const CACHE_NAME = 'china-business-v3';
 const urlsToCache = [
   '/china-busines-landing/',
   '/china-busines-landing/index.html',
-  '/china-busines-landing/styles.css',
+  '/china-busines-landing/style.css',
   '/china-busines-landing/manifest.json',
   '/china-busines-landing/icons/icon-192.png',
-  '/china-busines-landing/icons/icon-512.png'
+  '/china-busines-landing/icons/icon-512.png',
+  '/china-busines-landing/images/expert.jpg',
+  '/china-busines-landing/images/logo.png'   // <-- добавили логотип
 ];
+// остальные обработчики (install, fetch, activate) остаются без изменений
 
 self.addEventListener('install', event => {
   event.waitUntil(
