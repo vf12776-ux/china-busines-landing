@@ -678,3 +678,43 @@ footer {
 .header--compact .phone {
     font-size: 14px; /* уменьшаем телефон */
 }
+/* FAQ аккордеон */
+.faq-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px; /* место для иконки */
+    margin: 0;
+    padding: 15px 30px 15px 0;
+    font-weight: 600;
+}
+
+.faq-question:after {
+    font-family: "Font Awesome 6 Free";
+    content: "\f078"; /* иконка стрелки вниз (fa-chevron-down) */
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question:after {
+    transform: translateY(-50%) rotate(180deg); /* переворачиваем стрелку */
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 0 15px 0;
+    margin: 0;
+    color: #666;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}

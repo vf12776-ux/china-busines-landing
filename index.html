@@ -140,7 +140,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- 8. ТАРИФЫ (PRICING) -->
         <section class="pricing">
             <div class="container">
@@ -296,6 +296,15 @@
         } else {
             header.classList.remove('header--compact');
         }
+    });
+</script>
+<!-- Скрипт для FAQ аккордеона -->
+<script>
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.faq-item');
+            item.classList.toggle('active');
+        });
     });
 </script>
 
