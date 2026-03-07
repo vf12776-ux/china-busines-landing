@@ -23,7 +23,7 @@
 <body>
 
     <!-- 1. ШАПКА (HEADER) -->
-    <header>
+    <header class="header">
         <div class="container">
             <div class="header__inner">
                 <!-- Логотип -->
@@ -296,5 +296,19 @@
             installBtn.style.display = 'none';
         });
     </script>
+    <!-- Скрипт для умной шапки -->
+<script>
+    const header = document.querySelector('.header');
+    const scrollThreshold = 50; // пиксели, после которых шапка сжимается
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('header--compact');
+        } else {
+            header.classList.remove('header--compact');
+        }
+    });
+</script>
+
 </body>
 </html>

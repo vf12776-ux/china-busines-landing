@@ -646,3 +646,35 @@ footer {
         font-size: 1.5rem;
     }
 }
+/* Умная шапка */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff; /* чтобы фон не пропадал */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Компактное состояние */
+.header--compact {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.header--compact .logo__img {
+    width: 120px !important; /* уменьшаем логотип */
+}
+
+.header--compact .descriptor {
+    display: none; /* скрываем подпись под логотипом */
+}
+
+.header--compact .btn--primary {
+    padding: 8px 15px; /* уменьшаем кнопку */
+    font-size: 14px;
+}
+
+.header--compact .phone {
+    font-size: 14px; /* уменьшаем телефон */
+}
