@@ -282,6 +282,7 @@ section {
 
 .author__inner {
     display: flex;
+    flex-wrap: wrap; 
     gap: 50px;
     align-items: center;
     background: var(--color-white);
@@ -687,7 +688,7 @@ footer {
 .faq-question {
     cursor: pointer;
     position: relative;
-    padding-right: 30px; /* место для иконки */
+    padding-right: 30px;
     margin: 0;
     padding: 15px 30px 15px 0;
     font-weight: 600;
@@ -695,7 +696,7 @@ footer {
 
 .faq-question:after {
     font-family: "Font Awesome 6 Free";
-    content: "\f078"; /* иконка стрелки вниз (fa-chevron-down) */
+    content: "\f078";
     font-weight: 900;
     position: absolute;
     right: 10px;
@@ -705,7 +706,7 @@ footer {
 }
 
 .faq-item.active .faq-question:after {
-    transform: translateY(-50%) rotate(180deg); /* переворачиваем стрелку */
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .faq-answer {
@@ -716,31 +717,32 @@ footer {
 }
 
 .faq-item.active .faq-answer {
-    display: block;.expert-docs {
+    display: block;
+}
+
+/* Блок с документами эксперта */
+.expert-docs {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 25px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .expert-docs img {
-    width: 100%;
-    max-width: 180px;
+    width: auto;
+    max-width: 130px;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid #eaeaea;
-    transition: transform 0.2s;
+    max-height: 170px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
 }
 
-.expert-docs img:hover {
-    transform: scale(1.02);
-}
-
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .expert-docs img {
-        max-width: 140px;
+        max-width: 100px;
+        max-height: 140px;
     }
-}
 }
