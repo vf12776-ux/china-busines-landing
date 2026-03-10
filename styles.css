@@ -716,5 +716,31 @@ footer {
 }
 
 .faq-item.active .faq-answer {
-    display: block;
+    display: block;.expert-docs {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.expert-docs img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #eaeaea;
+    transition: transform 0.2s;
+}
+
+.expert-docs img:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 500px) {
+    .expert-docs img {
+        max-width: 140px;
+    }
+}
 }
